@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { createRoot } from 'react-dom';
 import { Play, Check, Video, MessageCircle, Instagram, Youtube, ExternalLink } from 'lucide-react';
 
 const App = () => {
   const [activeVideo, setActiveVideo] = useState(null);
 
-  // Aqui você troca pelos links dos SEUS vídeos
+  // Configuração dos Vídeos
   const portfolioVideos = [
     {
       id: 1,
@@ -36,6 +37,7 @@ const App = () => {
     }
   ];
 
+  // Configuração de Preços (Atualizado conforme pedido)
   const pricingPlans = [
     {
       name: "Avulso",
@@ -64,15 +66,14 @@ const App = () => {
   ];
 
   const handleContact = (planName) => {
-    // TROQUE O NÚMERO ABAIXO PELO SEU (Ex: 5511999999999)
-    const meuNumero = "5500000000000";
-    const message = encodeURIComponent(`Olá! Vi seu portfólio e tenho interesse no plano: ${planName}`);
+    const meuNumero = "5500000000000"; // Substitui pelo teu número real
+    const message = encodeURIComponent(`Olá! Vi o teu portfólio e tenho interesse no plano: ${planName}`);
     window.open(`https://wa.me/${meuNumero}?text=${message}`, '_blank'); 
   };
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-[#595ce9] selection:text-white">
-      {/* Hero Section */}
+      {/* Hero Section com cor #595ce9 */}
       <header className="relative py-24 px-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#595ce9]/20 via-transparent to-transparent -z-10"></div>
         <div className="max-w-5xl mx-auto text-center">
@@ -83,7 +84,7 @@ const App = () => {
             Edição de Vídeo que <br /> Conecta e Converte.
           </h1>
           <p className="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Especialista em criar conteúdo dinâmico para marcas e empresas que buscam impacto visual.
+            Especialista em criar conteúdo dinâmico para marcas e empresas que procuram impacto visual.
           </p>
           <div className="flex justify-center gap-4">
             <a href="#portfolio" className="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-neutral-200 transition-all flex items-center gap-2">
@@ -96,7 +97,7 @@ const App = () => {
         </div>
       </header>
 
-      {/* Portfolio Grid */}
+      {/* Grid de Portfólio */}
       <section id="portfolio" className="py-20 px-6 max-w-7xl mx-auto">
         <div className="mb-12">
           <h2 className="text-3xl font-bold mb-2">Trabalhos Recentes</h2>
@@ -132,7 +133,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Modal do Player */}
+      {/* Video Modal */}
       {activeVideo && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" onClick={() => setActiveVideo(null)}>
           <div className="relative w-full max-w-4xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-neutral-800">
@@ -146,11 +147,11 @@ const App = () => {
         </div>
       )}
 
-      {/* Pricing Section */}
+      {/* Secção de Preços */}
       <section id="precos" className="py-20 px-6 bg-neutral-900/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Escolha seu Combo</h2>
+            <h2 className="text-4xl font-bold mb-4">Escolha o seu Combo</h2>
             <p className="text-neutral-400">Opções flexíveis para o seu volume de produção.</p>
           </div>
 
@@ -227,4 +228,7 @@ const App = () => {
   );
 };
 
-export default App;
+// Renderização final
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);
