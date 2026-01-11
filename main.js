@@ -5,7 +5,7 @@ import { Play, Check, Video, MessageCircle, Instagram, Youtube, ExternalLink } f
 const App = () => {
   const [activeVideo, setActiveVideo] = useState(null);
 
-  // Configuração dos Vídeos
+  // Configuração dos Vídeos do Portfólio
   const portfolioVideos = [
     {
       id: 1,
@@ -26,7 +26,7 @@ const App = () => {
       title: "Documentário Curto",
       category: "Narrativo",
       thumbnail: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=800",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9XcQ"
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
     },
     {
       id: 4,
@@ -37,6 +37,7 @@ const App = () => {
     }
   ];
 
+  // Planos de Preços
   const pricingPlans = [
     {
       name: "Avulso",
@@ -65,7 +66,7 @@ const App = () => {
   ];
 
   const handleContact = (planName) => {
-    const meuNumero = "5500000000000"; 
+    const meuNumero = "5500000000000"; // Substitui pelo teu número de WhatsApp
     const message = encodeURIComponent(`Olá! Vi o teu portfólio e tenho interesse no plano: ${planName}`);
     window.open(`https://wa.me/${meuNumero}?text=${message}`, '_blank'); 
   };
@@ -132,7 +133,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Video Modal */}
+      {/* Modal do Player de Vídeo */}
       {activeVideo && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" onClick={() => setActiveVideo(null)}>
           <div className="relative w-full max-w-4xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-neutral-800">
@@ -206,7 +207,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer / Rodapé */}
       <footer className="py-12 px-6 border-t border-neutral-900">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
           <div>
@@ -227,9 +228,8 @@ const App = () => {
   );
 };
 
-// Renderização final corrigida para React 18
-const container = document.getElementById('root');
-if (container) {
-  const root = createRoot(container);
-  root.render(<App />);
+// Inicialização da aplicação
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  createRoot(rootElement).render(<App />);
 }
