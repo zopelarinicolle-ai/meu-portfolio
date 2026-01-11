@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Play, Check, Video, MessageCircle, Instagram, Youtube, ExternalLink } from 'lucide-react';
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
       title: "Documentário Curto",
       category: "Narrativo",
       thumbnail: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=800",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+      embedUrl: "https://www.youtube.com/embed/dQw4w9XcQ"
     },
     {
       id: 4,
@@ -37,7 +37,6 @@ const App = () => {
     }
   ];
 
-  // Configuração de Preços (Atualizado conforme pedido)
   const pricingPlans = [
     {
       name: "Avulso",
@@ -66,14 +65,14 @@ const App = () => {
   ];
 
   const handleContact = (planName) => {
-    const meuNumero = "5500000000000"; // Substitui pelo teu número real
+    const meuNumero = "5500000000000"; 
     const message = encodeURIComponent(`Olá! Vi o teu portfólio e tenho interesse no plano: ${planName}`);
     window.open(`https://wa.me/${meuNumero}?text=${message}`, '_blank'); 
   };
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-[#595ce9] selection:text-white">
-      {/* Hero Section com cor #595ce9 */}
+      {/* Hero Section */}
       <header className="relative py-24 px-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#595ce9]/20 via-transparent to-transparent -z-10"></div>
         <div className="max-w-5xl mx-auto text-center">
@@ -228,7 +227,9 @@ const App = () => {
   );
 };
 
-// Renderização final
+// Renderização final corrigida para React 18
 const container = document.getElementById('root');
-const root = createRoot(container);
-root.render(<App />);
+if (container) {
+  const root = createRoot(container);
+  root.render(<App />);
+}
